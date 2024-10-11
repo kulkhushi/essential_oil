@@ -47,7 +47,7 @@ const Categories = () => {
           <div className="row row-40 row-xl-60 justify-content-center box-ordered">
             {services.map((service, i) => {
               return (
-                <div className="col-sm-6 col-lg-4">
+                <div key={service.title} className="col-sm-6 col-lg-4">
                   <article className="services-creative">
                     <a
                       className="services-creative-figure"

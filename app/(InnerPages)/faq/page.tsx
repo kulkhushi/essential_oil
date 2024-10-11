@@ -12,17 +12,28 @@ const PageBreadcrumbs = [
     label: "FAQ",
     url: "", 
   }
-  ]
+];
 
 const FaqPage = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [content, setContent] = useState<{header:string; body:string}[] | null>(null);
-
+  const contentRefs = useRef<(HTMLDivElement | null)[]>([]); // Store references for all accordion items
+  const [heights, setHeights] = useState<string[]>(Array(faqData.length).fill("0px"));
 
   const toggleAccordion = (index: number, event: React.MouseEvent) => {
     event.preventDefault(); // Prevent default anchor behavior
     setOpenIndex(openIndex === index ? null : index);
   };
+
+  useEffect(() => {
+    // Update the height for the currently opened item
+    const updatedHeights = faqData.map((_, idx) => {
+      if (contentRefs.current[idx]) {
+        return openIndex === idx ? `${contentRefs.current[idx]?.scrollHeight}px` : "0px";
+      }
+      return "0px";
+    });
+    setHeights(updatedHeights);
+  }, [openIndex]);
 
   return (
     <>
@@ -39,16 +50,7 @@ const FaqPage = () => {
                 aria-multiselectable="false"
               >
                 {faqData.map((faq, index) => {
-                  // Manage open state and content height
                   const isOpen = openIndex === index;
-                  const contentRef = useRef<HTMLDivElement>(null);
-                  const [height, setHeight] = useState("0px");
-
-                  useEffect(() => {
-                    if (contentRef.current) {
-                      setHeight(isOpen ? `${contentRef.current.scrollHeight}px` : "0px");
-                    }
-                  }, [isOpen]);
 
                   return (
                     <article className="card card-custom card-corporate" key={index}>
@@ -73,14 +75,16 @@ const FaqPage = () => {
                         aria-labelledby={`accordion-card-head-${index}`}
                         role="tabpanel"
                         style={{
-                          maxHeight: height,
+                          maxHeight: heights[index],
                           transition: "max-height 0.4s ease",
                           overflow: "hidden",
                         }}
-                        ref={contentRef}
+                        ref={(el) => {
+                          contentRefs.current[index] = el;
+                        }} // Corrected ref assignment
                       >
                         <div className="card-body">
-<div dangerouslySetInnerHTML={{ __html: faq?.body }} />
+                          <div dangerouslySetInnerHTML={{ __html: faq?.body }} />
                         </div>
                       </div>
                     </article>

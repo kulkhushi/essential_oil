@@ -18,6 +18,7 @@ const Manufacturing = () => {
           <div className="row g-0">
             <div className="col-md-4 col-lg-5 col-xl-6 box-transform-wrap">
               <div className="box-transform">
+                {/*  eslint-disable-next-line @next/next/no-img-element */}
                 <img src="hydra.jpg" alt="Hydra Image" />
               </div>
             </div>
@@ -115,7 +116,7 @@ const Manufacturing = () => {
                       margin: '19px 0px 0px 35px',
                     }}
                   >
-                    Steam distillation is a popular method for extracting essential oil from plants. It's a gentle
+                    Steam distillation is a popular method for extracting essential oil from plants. It&#39;s a gentle
                     process that preserves the delicate aromatic compounds present in botanicals.
                   </p>
                   <p
@@ -125,7 +126,7 @@ const Manufacturing = () => {
                       margin: '19px 0px 0px 35px',
                     }}
                   >
-                    Our extraction process efficiently captures a wide range of botanicals while preserving essential oils'
+                    Our extraction process efficiently captures a wide range of botanicals while preserving essential oils&#39;
                     natural properties with minimal degradation of compounds.
                   </p>
                   <div
@@ -149,6 +150,7 @@ const Manufacturing = () => {
           </div>
           <div className="col-md-4 col-lg-5 col-xl-6 box-transform-wrap">
             <div className="box-transform">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="steam.jpg" alt="Steam Image" />
             </div>
           </div>
