@@ -22,7 +22,6 @@ const Breadcum = ({imgSrc, BreadcrumbsPage,pageTitle}:BreadcrumbsPropsTypes) => 
         ></div>
       </div>
       <div className="container">
-
           <ul className="breadcrumbs-custom-path text-center text-zinc-950">
             {
               BreadcrumbsPage?.map((page,index)=>{
