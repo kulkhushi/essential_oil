@@ -80,7 +80,7 @@ const Footer = () => {
                         </div>
                         <div className="unit-body">
                           <a className="phone" href="tel:#">
-                            +91 8953537557
+                            +91 7607572581
                           </a>
                         </div>
                       </div>

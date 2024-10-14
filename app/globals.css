@@ -24758,6 +24758,10 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 	   right: auto;
 	   left: 15px;
    }
+   .brand-logo-dark {
+	width: 70%!important;
+	height: auto!important;
+   }
 }
 
 .scrollToTopButton {
