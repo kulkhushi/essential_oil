@@ -4,7 +4,7 @@ const Footer = () => {
       className="section footer-classic context-dark"
       style={{ background: "url(/footer.jpg)" }}
     >
-      <div className="footer-classic-content">
+      <div className="footer-classic-content overflow-hidden">
         <div className="container">
           <div className="row row-50 row-lg-0 g-0">
             <div

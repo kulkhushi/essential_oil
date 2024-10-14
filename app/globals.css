@@ -24753,6 +24753,13 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 	}
 }
 
+@media (max-width: 1024px) {
+	.ui-to-top {
+	   right: auto;
+	   left: 15px;
+   }
+}
+
 .scrollToTopButton {
 	cursor: pointer;
 	opacity: 0;

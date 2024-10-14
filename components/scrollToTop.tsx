@@ -30,7 +30,7 @@ const ScrollToTop = () => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  return (
+  return (   
     <button id="ui-to-top" onClick={scrollToTop} className={`ui-to-top mdi mdi-arrow-up active scrollToTopButton ${isVisible ? 'visible' : ''}`}></button>
   )
 }
