@@ -29,16 +29,19 @@ const Header = () => {
     }
   };
 
+  const handleScroll = () => {
+    if (window.scrollY > 100) {
+      setIsStuck(true);
+    } else {
+      setIsStuck(false);
+    }
+  };
+
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setIsStuck(true);
-      } else {
-        setIsStuck(false);
-      }
-    };
+
+
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initialize the state
+  
     const handleResize = () => {
       if (divRef.current) {
         if (window.innerWidth <= 1199) {
@@ -56,10 +59,10 @@ const Header = () => {
     handleResize();
     // Clean up the event listener
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+   
       window.removeEventListener("resize", handleResize);
     } 
-  }, []);
+  },);
 
   useEffect(() => {
     const handleMouseEnter = () => {
@@ -129,7 +132,7 @@ const Header = () => {
       <div className="rd-navbar-wrap">
         <nav
           ref={divRef}
-          className={`rd-navbar rd-navbar-classic rd-navbar rd-navbar-classic rd-navbar-original rd-navbar-static ${isStuck&&'rd-navbar--is-stuck'}`}
+          className={`rd-navbar rd-navbar-classic rd-navbar rd-navbar-classic rd-navbar-original rd-navbar-static rd-navbar-fixed ${isStuck&&'rd-navbar--is-stuck !z-50'}`}
         >
           <div
             ref={buttonRight}
