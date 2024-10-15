@@ -1,7 +1,7 @@
 const Manufacturing = () => {
   return (
     <>
-      <section className="section parallax-container" style={{ marginTop: 58 }}>
+      <section className="section parallax-container homeManufacture designCommon" style={{ marginTop: 58 }}>
         <div className="parallax-content section-xl context-dark">
           <div className="container">
             <h3 className="oh text-center" style={{ fontSize: 40, color: "#000" }} data-aos="fade-up">
@@ -136,7 +136,7 @@ const Manufacturing = () => {
                     <a
                       className="button button-icon button-icon-right button-primary"
                       data-aos="fade-up"
-                      href="about-us.html"
+                      href="/about-us"
                       style={{
                         visibility: 'visible',                       
                       }}

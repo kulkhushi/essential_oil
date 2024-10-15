@@ -38,7 +38,7 @@ const Footer = () => {
                     <a href="#">About us</a>
                   </li>
                   <li>
-                    <a href="contacts.html">Contact Us</a>
+                    <a href="/contact-us">Contact Us</a>
                   </li>
                 </ul>
                 <ul
@@ -101,7 +101,7 @@ const Footer = () => {
                   </div>
                   <a
                     className="button button-sm button-primary button-winona"
-                    href="#"
+                    href="/contact-us"
                   >
                     Request a quote
                   </a>

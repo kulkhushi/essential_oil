@@ -24762,6 +24762,23 @@ html:not(.ie-11):not(.ios) .parallax-disabled {
 	width: 102%!important;
 	height: auto!important;
    }
+ .swiper-pagination {
+	display: none!important;
+   }
+   .swiper-slide-caption h1 span {
+	font-size: 40px!important;
+	margin-top: 20px;
+   }
+   .homeManufacture {
+	margin-top: 10px!important;
+   }
+   .designCommon h3 span {
+	font-size: 35px!important;
+	width: 100%;
+   }
+   .breadcrumbs-custom-title {
+	margin-top: 20px;
+   }
 }
 
 .scrollToTopButton {

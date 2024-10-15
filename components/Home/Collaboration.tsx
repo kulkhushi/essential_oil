@@ -31,7 +31,7 @@ const Collaboration = () => {
                     company can be a smart move towards achieving your business objectives.
                   </p>
                   <div className="button-wrap oh-desktop">
-                    <a className="button button-icon button-icon-right button-primary wow slideInUp" href="about-us.html" style={{ visibility: 'visible', animationName: 'slideInUp' }}>
+                    <a className="button button-icon button-icon-right button-primary wow slideInUp" href="/about-us" style={{ visibility: 'visible', animationName: 'slideInUp' }}>
                       <span className="icon mdi mdi-chevron-right"></span>Read more
                     </a>
                   </div>

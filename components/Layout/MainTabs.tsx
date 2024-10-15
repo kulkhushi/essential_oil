@@ -69,7 +69,7 @@ const sethandleModalOpen = (e: React.MouseEvent<HTMLAnchorElement>) => {
               </Nav>
               <a
         className="button button-lg button-primary button-winona"
-        href="contacts.html"
+        href="/contact-us"
       >
         <div className="content-original">Contact us</div>
         <div className="content-dubbed">Contact us</div>

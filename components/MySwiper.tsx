@@ -6,9 +6,9 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Navigation, Pagination } from "swiper/modules";
 
 const slides = [
-  { img: "slide-1-1920x724.jpg", heading: "ESSENTIAL OIL", description:"IS THE BEGINNING OF ALL", btnText:'View more' },
-  { img: "slide-2-1920x724.jpg", heading: "FLORAL WATER", description:"FOR PEOPLE WORLDWIDE", btnText:'View more' },
-  { img: "slide-3-1920x724.jpg", heading: "AROMATIC CHEMICALS", description:"IN ALL OUR SOLUTIONS", btnText:'View more' },
+  { img: "slide-1-1920x724.jpg", heading: "ESSENTIAL OIL", description:"IS THE BEGINNING OF ALL", btnText:'View more',url:'/essential-oil' },
+  { img: "slide-2-1920x724.jpg", heading: "FLORAL WATER", description:"FOR PEOPLE WORLDWIDE", btnText:'View more',url:'/floral-water' },
+  { img: "slide-3-1920x724.jpg", heading: "AROMATIC CHEMICALS", description:"IN ALL OUR SOLUTIONS", btnText:'View more',url:'/aromatic-chemicals' },
 ];
 
 
@@ -89,7 +89,7 @@ export default function MySwiper() {
                     </h4>
                     <a
                       className="button button-lg button-secondary button-winona button-shadow-2 animate__animated animate__fadeInUp animate__delay-.50s"
-                      href="#"                     
+                      href={slide.url}                     
                     >
                      {slide.btnText}
                     </a>

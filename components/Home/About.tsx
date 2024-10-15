@@ -41,7 +41,7 @@ const AboutSection = () => {
                     </p>
                     <a
                       className="button button-lg button-width-auto button-outline button-default-outline-2 button-winona"
-                      href="about-us.html"
+                      href="/about-us"
                     >
                       Read more
                     </a>

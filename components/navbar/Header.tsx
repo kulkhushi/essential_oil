@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import { usePathname  } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 const Header = () => {
@@ -12,6 +13,10 @@ const Header = () => {
   const socialMenuToggle = useRef<HTMLUListElement>(null); // Ref for the div element
   const socialToggleButton = useRef<HTMLDivElement>(null); // Ref for the button element
   const [isStuck, setIsStuck] = useState(false);
+  const pathname  = usePathname();
+  const [isMounted, setIsMounted] = useState(false); 
+  const [isSubmenuOpen, setisSubmenuOpen]= useState(false as boolean)
+
   const handleClickOutside = (event: MouseEvent) => {
     if (
       socialMenuToggle.current &&
@@ -37,11 +42,21 @@ const Header = () => {
     }
   };
 
+
+  const handleSubmenu= () => {
+    if (window.innerWidth < 1200) {
+      setisSubmenuOpen((prev)=>!prev);
+    } else {
+      setisSubmenuOpen(false);
+    }
+  }
+
+
+
   useEffect(() => {
-
-
-    window.addEventListener('scroll', handleScroll);
   
+    window.addEventListener('scroll', handleScroll);
+      
     const handleResize = () => {
       if (divRef.current) {
         if (window.innerWidth <= 1199) {
@@ -65,15 +80,16 @@ const Header = () => {
   },);
 
   useEffect(() => {
+
     const handleMouseEnter = () => {
-      if (dropdownRef.current) {
-        dropdownRef.current.classList.add("focus"); // Add 'focus' class on hover
+      if (dropdownRef.current && window.innerWidth > 1200) {
+        dropdownRef.current.classList.add("opened"); // Add 'focus' class on hover
       }
     };
 
     const handleMouseLeave = () => {
-      if (dropdownRef.current) {
-        dropdownRef.current.classList.remove("focus"); // Remove 'focus' class on mouse leave
+      if (dropdownRef.current &&  window.innerWidth > 1200) {
+        dropdownRef.current.classList.remove("opened"); // Remove 'focus' class on mouse leave
       }
     };
 
@@ -106,6 +122,20 @@ const Header = () => {
       buttonRef.current.classList.toggle("active"); // Optionally toggle class on button
     }
   };
+
+  const removeActiveClass = () => {
+    if (menuRef.current) {
+      menuRef.current.classList.remove('active');
+    }
+    if (buttonRef.current) {
+      buttonRef.current.classList.remove('active');
+    }
+  };
+
+  useEffect(() => {
+    // Remove active class when pathname changes
+    removeActiveClass();
+  }, [pathname]); // Trigger effect whenever the path changes
 
   const handleToggleRight = () => {
     if (righMenuToggle.current) {
@@ -204,7 +234,7 @@ const Header = () => {
 
               <div className="rd-navbar-main-left">
                 <ul className="rd-navbar-nav">
-                  <li className="rd-nav-item active">
+                  <li className="rd-nav-item">
                     <Link className="rd-nav-link" href="/">
                       Home
                     </Link>
@@ -212,12 +242,13 @@ const Header = () => {
 
                   <li
                     ref={dropdownRef}
-                    className="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu"
+                    className={`rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu ${isSubmenuOpen?'opened':''}`}
+                    onClick={handleSubmenu}
                   >
                     <Link className="rd-nav-link" href="#">
                       Products
                     </Link>
-
+                    <span className={`rd-navbar-submenu-toggle`}></span>
                     <ul className="rd-menu rd-navbar-dropdown">
                       <li className="rd-dropdown-item">
                         <Link
