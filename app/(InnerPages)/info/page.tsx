@@ -124,8 +124,8 @@ const InfoPage = async () => {
                       <span className="icon mdi mdi-email-outline"></span>
                     </div>
                     <div className="unit-body">
-                      <a className="mail" href="mailto:#">
-                        info@lookaroma.com
+                      <a className="mail" href="mailto:info@lookaroma.com">
+                      info@lookaroma.com
                       </a>
                     </div>
                   </div>

@@ -92,8 +92,8 @@ const Footer = () => {
                           <span className="icon mdi mdi-email"></span>
                         </div>
                         <div className="unit-body">
-                          <a className="mail" href="mailto:#">
-                            info@lookaroma.com
+                          <a className="mail" href="mailto:info@lookaroma.com">
+                          info@lookaroma.com
                           </a>
                         </div>
                       </div>

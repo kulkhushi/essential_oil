@@ -223,7 +223,7 @@ const Header = () => {
                       </div>
 
                       <div className="unit-body">
-                        <Link className="address" href="#">
+                        <Link className="address" href="mailto:info@lookaroma.com">
                           info@lookaroma.com
                         </Link>
                       </div>
