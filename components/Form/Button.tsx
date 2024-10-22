@@ -5,14 +5,16 @@ type SubmitButtonProps = {
     className?: string;
     text?: string;
     size?: btnSize;
+    pending?: boolean;
   };
   
   export function SubmitButton({
     className = '',
     text = 'submit',
     size = 'lg',
+    pending
   }: SubmitButtonProps) {
-    const { pending } = useFormStatus();
+
     return (
         <button
         className="button button-secondary button-winona button-small"

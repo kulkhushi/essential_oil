@@ -1,33 +1,78 @@
-import { downloadBrochureActions } from '@/actions/actions';
-import React, { useState } from 'react';
-import { useFormState, useFormStatus } from 'react-dom';
-import { SubmitButton } from './Button';
-import FormContainer from './FormContainer';
+"use client";
+
+import { downloadBrochureActions } from "@/actions/actions";
+import React, { useState, useTransition } from "react";
+
+import { SubmitButton } from "./Button";
+import { usePathname } from "next/navigation";
 
 const initialState = {
-    message: '',
-  };
+  message: "",
+};
 
 const DownloadForm = () => {
-  // const [formData, setFormData] = useState({
-  //   name: '',
-  //   email: '',
-  //   mobile: '',
-  // });
+  const [resMessage, setResMessage] = useState<{ message: string }>(
+    initialState
+  );
+  const [dpdfName, satePdfName] = useState<string|null>(null)
+  const [pending, setTransition] = useTransition();
+  const pathName = usePathname();
 
-  // const handleChange = (e: { target: { name: string; value: string; }; }) => {
-  //   setFormData({
-  //     ...formData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
 
-// const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-//     e.preventDefault();
-//     // Handle form submission logic here
-//     await DownloadBrochureActions(formData)
-//     console.log('Form submitted:', formData);
-//   };
+    console.log("pathName", pathName);
+
+    let pdfName;
+
+    switch (pathName) {
+      case "/oleoresin":
+        pdfName = "Oleoresin.pdf";
+        break;
+      case "/absolute-oil":
+        pdfName = "Absolute_Oil.pdf";
+        break;
+      case "/carrier-oil":
+        pdfName = "Carrier_Oil.pdf";
+        break;
+      case "/floral-water":
+        pdfName = "Floral_Water.pdf";
+        break;
+      case "/essential-oil":
+        pdfName = "Essential_Oil.pdf";
+        break;
+      default:
+        pdfName = null;
+    }
+
+    const pdfUrl = `/pdf/${pdfName}`;
+
+   
+
+    // Create a FormData object from the form
+    const formData = new FormData(e.currentTarget);
+    setTransition(() => {
+      downloadBrochureActions({}, formData)
+        .then((res) => {
+          setResMessage(res);
+          new Promise((resolve) => {
+            setTimeout(resolve, 6000); // 3-second delay
+          });
+          if(!pdfName) return false;
+          satePdfName(pdfName)
+          const link = document.createElement("a");
+          link.href = pdfUrl;
+          link.setAttribute("download", pathName); // Set download attribute
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link); // Clean up
+          window.location.reload()
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    });
+  };
 
   //  const [state, formAction] = useFormState(downloadBrochureActions,initialState);
   //  const { pending } = useFormStatus();
@@ -36,9 +81,10 @@ const DownloadForm = () => {
   //  console.log('state:', state);
 
   return (
-<FormContainer action={downloadBrochureActions}>
-   
-      <label htmlFor="name">Name:</label><br />
+    <form onSubmit={handleSubmit}>
+      {resMessage.message && (<div className="bg-green-300/10 text-green-800 px-4 py-1 rounded-lg mb-5">{resMessage.message}</div>)}     
+      <label htmlFor="name">Name:</label>
+      <br />
       <input
         type="text"
         id="name"
@@ -47,9 +93,12 @@ const DownloadForm = () => {
         // onChange={handleChange}
         required
         // disabled={pending}
-      /><br /><br />
+      />
+      <br />
+      <br />
 
-      <label htmlFor="email">Email:</label><br />
+      <label htmlFor="email">Email:</label>
+      <br />
       <input
         type="email"
         id="email"
@@ -58,9 +107,12 @@ const DownloadForm = () => {
         // onChange={handleChange}
         required
         // disabled={pending}
-      /><br /><br />
+      />
+      <br />
+      <br />
 
-      <label htmlFor="mobile">Mobile Number:</label><br />
+      <label htmlFor="mobile">Mobile Number:</label>
+      <br />
       <input
         type="tel"
         id="mobile"
@@ -70,10 +122,12 @@ const DownloadForm = () => {
         required
         pattern="[0-9]{10}"
         // disabled={pending}
-      /><br /><br />
+      />
+      <br />
+      <br />
 
-     <SubmitButton />
-     </FormContainer>
+      <SubmitButton pending={pending} />
+    </form>
   );
 };
 

@@ -416,7 +416,7 @@ const Header = () => {
               </div>
               <Link
                 className="button button-icon button-icon-left button-white button-winona"
-                href="pdf/Company Profile.pdf"
+                href="pdf/Company_Profile.pdf"
                 download="download"
               >
                 <span className="icon mdi mdi-download"></span>

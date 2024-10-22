@@ -4,12 +4,12 @@ import Mail from "nodemailer/lib/mailer";
 
 const transPort = nodemailer.createTransport({
   service: "gmail",
-  host: process.env.MAIL_HOST,
-  port: 465,
-  secure: true, // true for 465, false for other ports
+  // host: process.env.MAIL_HOST,
+  // port: 465,
+  // secure: true, // true for 465, false for other ports
   auth: {
-    user: process.env.MAIL_USER,
-    pass: process.env.MAIL_PASSWORD,
+    user: process.env.SMTP_EMAIL,
+    pass: process.env.SMATP_PASS,
   },
 } as SMTPTransport.Options);
 
@@ -25,8 +25,8 @@ export const sendMail = async (mailData: SendMailType) => {
   const { sender, subject, message } = mailData;
   try {
     const response = await transPort.sendMail({
-      from: sender,
-      to: process.env.SITE_MAIL_RECIEVER,
+      from: process.env.SMTP_EMAIL,
+      to: process.env.SMTP_EMAIL,
       subject,
       html: message,
       text: message,
