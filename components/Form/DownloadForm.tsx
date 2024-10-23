@@ -114,15 +114,14 @@ const DownloadForm = () => {
       <label htmlFor="mobile">Mobile Number:</label>
       <br />
       <input
-        type="tel"
-        id="mobile"
-        name="mobile"
-        // value={formData.mobile}
-        // onChange={handleChange}
-        required
-        pattern="[0-9]{10}"
-        // disabled={pending}
-      />
+  type="tel"
+  id="mobile"
+  name="mobile"
+  required
+  pattern="\+?[0-9\s\-]{7,15}"
+  title="Please enter a valid phone number"
+  placeholder="+123 456 7890"
+/>
       <br />
       <br />
 

@@ -136,15 +136,11 @@ const Footer = () => {
                       id="contact-name"
                       type="text"
                       name="name"
+                      placeholder="Your Name*"
                       data-constraints="@Required"
                     />
                     <span className="form-validation"></span>
-                    <label
-                      className="form-label rd-input-label"
-                      htmlFor="contact-name"
-                    >
-                      Your Name*
-                    </label>
+                  
                   </div>
 
                   <div className="form-wrap">
@@ -154,14 +150,10 @@ const Footer = () => {
                       type="text"
                       name="number"
                       data-constraints="@Required"
+                      placeholder="Your Number*"
                     />
                     <span className="form-validation"></span>
-                    <label
-                      className="form-label rd-input-label"
-                      htmlFor="contact-email"
-                    >
-                      Your Number
-                    </label>
+                   
                   </div>
 
                   <div className="form-wrap">
@@ -171,14 +163,10 @@ const Footer = () => {
                       type="text"
                       name="country"
                       data-constraints="@Required"
+                      placeholder="Your Country*"
                     />
                     <span className="form-validation"></span>
-                    <label
-                      className="form-label rd-input-label"
-                      htmlFor="contact-country"
-                    >
-                      Your Country
-                    </label>
+                    
                   </div>
 
                   <div className="form-wrap">
@@ -188,26 +176,18 @@ const Footer = () => {
                       type="email"
                       name="city"
                       data-constraints="@Required"
+                      placeholder="Your City*"
                     />
                     <span className="form-validation"></span>
-                    <label
-                      className="form-label rd-input-label"
-                      htmlFor="contact-city"
-                    >
-                      Your City
-                    </label>
+                    
                   </div>
 
                   <div className="form-wrap">
-                    <label
-                      className="form-label rd-input-label"
-                      htmlFor="contact-message"
-                    >
-                      Message
-                    </label>
+                   
                     <textarea
                       className="form-input form-control-has-validation form-control-last-child"
                       id="contact-message"
+                      placeholder="Message*"
                       name="message"
                       data-constraints="@Required"
                       style={{ height: "86px" }}
