@@ -25,17 +25,17 @@ const Footer = () => {
                   className="footer-classic-list d-inline-block d-sm-block"
                   style={{ margin: "0px 0px 0px 55px" }}
                 >
-                  <li>
+                 <!-- <li>
                     <a href="about-us.html">Our Product</a>
+                  </li>-->
+                  <li>
+                    <a href="/faq">FAQ</a>
                   </li>
                   <li>
-                    <a href="#">FAQ</a>
+                    <a href="/project">Project</a>
                   </li>
                   <li>
-                    <a href="grid-blog.html">Project</a>
-                  </li>
-                  <li>
-                    <a href="#">About us</a>
+                    <a href="/about-us">About us</a>
                   </li>
                   <li>
                     <a href="/contact-us">Contact Us</a>
