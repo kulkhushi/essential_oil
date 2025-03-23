@@ -79,8 +79,8 @@ const Footer = () => {
                           <span className="icon icon-24 mdi mdi-phone"></span>
                         </div>
                         <div className="unit-body">
-                          <a className="phone" href="tel:#">
-                            +91 7607572581
+                          <a className="phone" href="tel:+917080302793">
+                            +91 7080302793
                           </a>
                         </div>
                       </div>
