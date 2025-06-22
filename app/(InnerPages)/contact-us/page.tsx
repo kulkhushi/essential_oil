@@ -69,8 +69,8 @@ const ContactUsPage = () => {
                         required
                       />
                       <span className="form-validation"></span>
-                      <label
-                        className="form-label rd-input-label"
+                     <label
+                        className={`form-label rd-input-label ${focusedInput === "name" || formData.name ? "hidden" : ""}`}
                         htmlFor="contact-your-name-5"
                       >
                         Your Name*
