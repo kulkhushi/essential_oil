@@ -1,6 +1,6 @@
 "use client";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { ChangeEvent, FormEvent, useState, useEffect } from "react";
 
 type ContactFormTypes = {
   name: string;
@@ -13,13 +13,13 @@ type ContactFormTypes = {
 const PageBreadcrumbs = [
   {
     label: "Home",
-    url: "/", 
+    url: "/",
   },
   {
     label: "Contact Us",
-    url: "", 
-  }
-  ]
+    url: "",
+  },
+];
 
 const ContactUsPage = () => {
   const [formData, setFormData] = useState<ContactFormTypes>({
@@ -32,32 +32,34 @@ const ContactUsPage = () => {
 
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
+  const handleFocus = (name: string) => {
+    setFocusedInput(name);
+  };
+
+  const handleBlur = () => {
+    setFocusedInput(null);
+  };
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Add form submission logic here
-  };
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => { 
+    e.preventDefault(); 
+    // Add form submission logic here 
+    };
 
   return (
     <>
-      <Breadcrumbs imgSrc="contact-us.png" pageTitle="Contact Us" BreadcrumbsPage={PageBreadcrumbs}/>
+      <Breadcrumbs imgSrc="contact-us.png" pageTitle="Contact Us" BreadcrumbsPage={PageBreadcrumbs} />
       <section className="section section-lg bg-default text-md-start">
         <div className="container">
           <div className="row row-60 justify-content-center">
             <div className="col-lg-8">
-              <h4 className="text-spacing-25 text-transform-none">
-                Get in Touch
-              </h4>
-              <form
-                className="rd-form rd-mailform"
-                onSubmit={handleSubmit}
-                noValidate
-              >
+              <h4 className="text-spacing-25 text-transform-none">Get in Touch</h4>
+              <form className="rd-form rd-mailform" onSubmit={handleSubmit} noValidate>
                 <div className="row row-20 gutters-20">
                   <div className="col-md-6">
                     <div className="form-wrap">
@@ -67,11 +69,13 @@ const ContactUsPage = () => {
                         type="text"
                         name="name"
                         value={formData.name}
-                        onChange={(e) => handleChange(e)}
+                        onChange={handleChange}
+                        onFocus={() => handleFocus("name")}
+                        onBlur={handleBlur}
                         required
                       />
                       <span className="form-validation"></span>
-                     <label
+                      <label
                         className={`form-label rd-input-label ${focusedInput === "name" || formData.name ? "hidden" : ""}`}
                         htmlFor="contact-your-name-5"
                       >
@@ -88,11 +92,13 @@ const ContactUsPage = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
+                        onFocus={() => handleFocus("email")}
+                        onBlur={handleBlur}
                         required
                       />
                       <span className="form-validation"></span>
                       <label
-                       className={`form-label rd-input-label ${focusedInput === "email" || formData.email ? "hidden" : ""}`}
+                        className={`form-label rd-input-label ${focusedInput === "email" || formData.email ? "hidden" : ""}`}
                         htmlFor="contact-email-5"
                       >
                         Your E-mail*
@@ -106,6 +112,8 @@ const ContactUsPage = () => {
                         name="service"
                         value={formData.service}
                         onChange={handleChange}
+                        onFocus={() => handleFocus("service")}
+                        onBlur={handleBlur}
                         required
                       >
                         <option value="" disabled>
@@ -127,10 +135,12 @@ const ContactUsPage = () => {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
+                        onFocus={() => handleFocus("phone")}
+                        onBlur={handleBlur}
                       />
                       <span className="form-validation"></span>
                       <label
-                       className={`form-label rd-input-label ${focusedInput === "phone" || formData.phone ? "hidden" : ""}`}
+                        className={`form-label rd-input-label ${focusedInput === "phone" || formData.phone ? "hidden" : ""}`}
                         htmlFor="contact-phone-5"
                       >
                         Your Phone*
@@ -151,60 +161,69 @@ const ContactUsPage = () => {
                         name="message"
                         value={formData.message}
                         onChange={handleChange}
+                        onFocus={() => handleFocus("message")}
+                        onBlur={handleBlur}
                         required
                       />
                       <span className="form-validation"></span>
                     </div>
                   </div>
                 </div>
-                <button
-                  className="button button-secondary button-winona"
-                  type="submit"
-                >
+                <button className="button button-secondary button-winona" type="submit">
                   <div className="content-original">Contact us</div>
                   <div className="content-dubbed">Contact us</div>
                 </button>
               </form>
             </div>
             <div className="col-lg-4">
-      <div className="aside-contacts">
-        <div className="row row-30">
-          <div className="col-sm-6 col-lg-12 aside-contacts-item">
-            <p className="aside-contacts-title">Get social</p>
-            <ul className="list-inline contacts-social-list list-inline-sm">
-              <li><a className="icon mdi mdi-facebook" href="#"></a></li>
-              <li><a className="icon mdi mdi-twitter" href="#"></a></li>
-              <li><a className="icon mdi mdi-instagram" href="#"></a></li>
-              <li><a className="icon mdi mdi-google-plus" href="#"></a></li>
-            </ul>
-          </div>
-
-          <div className="col-sm-6 col-lg-12 aside-contacts-item">
-            <p className="aside-contacts-title">Phone</p>
-            <div className="unit unit-spacing-xs justify-content-center justify-content-md-start">
-              <div className="unit-left">
-                <span className="icon mdi mdi-phone"></span>
-              </div>
-              <div className="unit-body">
-                <a className="phone" href="tel:#">+91 7607572581</a>
+              <div className="aside-contacts">
+                <div className="row row-30">
+                  <div className="col-sm-6 col-lg-12 aside-contacts-item">
+                    <p className="aside-contacts-title">Get social</p>
+                    <ul className="list-inline contacts-social-list list-inline-sm">
+                      <li>
+                        <a className="icon mdi mdi-facebook" href="#"></a>
+                      </li>
+                      <li>
+                        <a className="icon mdi mdi-twitter" href="#"></a>
+                      </li>
+                      <li>
+                        <a className="icon mdi mdi-instagram" href="#"></a>
+                      </li>
+                      <li>
+                        <a className="icon mdi mdi-google-plus" href="#"></a>
+                      </li>
+                    </ul>
+                  </div>
+                  <div className="col-sm-6 col-lg-12 aside-contacts-item">
+                    <p className="aside-contacts-title">Phone</p>
+                    <div className="unit unit-spacing-xs justify-content-center justify-content-md-start">
+                      <div className="unit-left">
+                        <span className="icon mdi mdi-phone"></span>
+                      </div>
+                      <div className="unit-body">
+                        <a className="phone" href="tel:#">
+                          +91 7607572581
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-sm-6 col-lg-12 aside-contacts-item">
+                    <p className="aside-contacts-title">E-mail</p>
+                    <div className="unit unit-spacing-xs justify-content-center justify-content-md-start">
+                      <div className="unit-left">
+                        <span className="icon mdi mdi-email-outline"></span>
+                      </div>
+                      <div className="unit-body">
+                        <a className="mail" href="mailto:info@lookaroma.com">
+                          info@lookaroma.com
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-
-          <div className="col-sm-6 col-lg-12 aside-contacts-item">
-            <p className="aside-contacts-title">E-mail</p>
-            <div className="unit unit-spacing-xs justify-content-center justify-content-md-start">
-              <div className="unit-left">
-                <span className="icon mdi mdi-email-outline"></span>
-              </div>
-              <div className="unit-body">
-                <a className="mail" href="mailto:info@lookaroma.com">info@lookaroma.com</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
           </div>
         </div>
       </section>
@@ -212,4 +231,4 @@ const ContactUsPage = () => {
   );
 };
 
-export default ContactUsPage;
+export default ContactUsPage
