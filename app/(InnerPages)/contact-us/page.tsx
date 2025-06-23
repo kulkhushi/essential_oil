@@ -140,7 +140,7 @@ const ContactUsPage = () => {
                   <div className="col-12">
                     <div className="form-wrap">
                       <label
-                        className="form-label rd-input-label"
+                        className={`form-label rd-input-label ${focusedInput === "message" || formData.message ? "hidden" : ""}`}
                         htmlFor="contact-message-5"
                       >
                         Message
