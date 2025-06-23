@@ -30,6 +30,8 @@ const ContactUsPage = () => {
     message: "",
   });
 
+  const [focusedInput, setFocusedInput] = useState<string | null>(null);
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
@@ -90,7 +92,7 @@ const ContactUsPage = () => {
                       />
                       <span className="form-validation"></span>
                       <label
-                        className="form-label rd-input-label"
+                       className={`form-label rd-input-label ${focusedInput === "email" || formData.email ? "hidden" : ""}`}
                         htmlFor="contact-email-5"
                       >
                         Your E-mail*
@@ -128,7 +130,7 @@ const ContactUsPage = () => {
                       />
                       <span className="form-validation"></span>
                       <label
-                        className="form-label rd-input-label"
+                       className={`form-label rd-input-label ${focusedInput === "phone" || formData.phone ? "hidden" : ""}`}
                         htmlFor="contact-phone-5"
                       >
                         Your Phone*
